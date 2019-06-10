@@ -1,0 +1,18 @@
+<html>
+<script>
+function newlink(){
+var a=myform.name.value;
+console.log(a)
+window.location.href='http://localhost:9000/stutable/'+a;
+console.log('http://localhost:9000/stutable/'+a)
+}
+
+</script>
+<body>
+请输入学生号: 
+<form name="myform">
+        <input type="text" name="name" id="nn" />
+        <input type="button" name="button" value="确定" onclick="newlink()" />
+        </form>
+</body>
+</html>

@@ -1,0 +1,184 @@
+{% extends "./sbase.html" %}
+{% block title %} 学生课表 {% end %}
+
+{% block css %}
+{% end %}
+
+{% block js %}
+<script>
+function getno(){
+	u = window.location.href
+	u = u.substring(0,41)
+	console.log(u)
+}
+function Termselect(){   
+    var nSel = document.getElementById("select1");
+    var index = nSel.selectedIndex; // 选中索引
+    var text = nSel.options[index].value; // 选中文本
+        console.log(text)
+    $.ajax({ 
+        type: 'GET', 
+		url: u + text ,
+        data:'',
+        dataType: 'json' 
+	})  
+	window.location.href  = u+text;
+}
+$(document).ready(function() {
+	$( "#btn-search" ).on( "click", Termselect);
+	console.log(111111111111)
+	getno();
+});
+
+
+</script>
+{% end %}
+
+{% block content %}
+
+<tr><td>学期：</td>
+	<select name="term" id="select1"  >
+                <option selected >请选择</option>	
+				<option value="2015-2016-1" >2015-2016学年春</option>	
+				<option value="2015-2016-2" >2015-2016学年秋</option>	
+				<option value="2016-2017-1" >2016-2017学年春</option>
+				<option value="2016-2017-2" >2016-2017学年秋</option>
+				<option value="2017-2018-1" >2017-2018学年春</option>  
+				<option value="2017-2018-2" >2017-2018学年秋</option>
+				<option value="2018-2019-1" >2018-2019学年春</option> 
+				<option value="2018-2019-2" >2018-2019学年秋</option>  
+	</select>
+	</tr>
+	<button class="btn btn-info btn-xs" id="btn-search">确定</button>
+
+	<h2>课表</h2>
+    <hr>
+	<div id="table">
+		<table class="table table-striped table-bordered table-hover">	<!--绘制时间表-->
+			<thead>
+			<tr>
+				<th style="width:5rem">
+				<th style="width:5rem">
+				<th style="width:5rem">星期一
+				<th style="width:5rem">星期二
+				<th style="width:5rem">星期三
+				<th style="width:5rem">星期四
+				<th style="width:5rem">星期五
+				<th style="width:5rem">星期六
+				<th style="width:5rem">星期日
+			</tr>
+			</thead>
+            <tr style="height:5rem">
+                <td width='2rem'rowspan="2">上午</td>
+				<td>第一节(08:20-10:00)</td>
+				{% for j in ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'] %}
+					{% for item in items %}
+						{% if item[9] == j and item[10] == '一' %}	<!--判断元素是否符合当前格的条件-->
+							<td>{{ item[3] }}<br>{{ item[6] }}<br>{{ item[11] }}{{ item[12] }}{{ item[13] }}</td>
+							{% break %}
+						{% elif item == items[-1] %}			<!--判断是否执行到items最后一个元素-->
+							<td>{{ ' ' }}</td>
+						{% end %}
+					{% end %}
+				{% end %}
+			</tr>
+			<tr style="height:5rem">
+				<td>第二节(10:20-12:00)</td>
+				{% for j in ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'] %}
+					{% for item in items %}
+						{% if item[9] == j and item[10] == '二' %}
+                        <td>{{ item[3] }}<br>{{ item[6] }}<br>{{ item[11] }}{{ item[12] }}{{ item[13] }}</td>
+                        {% break %}
+						{% elif item == items[-1] %}
+							<td>{{ ' ' }}</td>
+						{% end %}
+					{% end %}
+				{% end %}
+			</tr>
+			<tr style="height:2rem">
+				<td colspan="9" align="center">午休</td>
+			</tr>
+			</tr>
+            <tr style="height:5rem">
+                <td rowspan="2">下午</td>
+				<td>第三节(14:00-15:40)</td>
+				{% for j in ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'] %}
+					{% for item in items %}
+						{% if item[9] == j and item[10] == '三' %}
+                        <td>{{ item[3] }}<br>{{ item[6] }}<br>{{ item[11] }}{{ item[12] }}{{ item[13] }}</td>
+                        {% break %}
+						{% elif item == items[-1] %}
+							<td>{{ ' ' }}</td>
+							{% end %}
+					{% end %}
+				{% end %}
+			</tr>
+			<tr style="height:5rem">
+				<td>第四节(16:00-17:40)</td>
+				{% for j in ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'] %}
+					{% for item in items %}
+						{% if item[9] == j and item[10] == '四' %}
+                        <td>{{ item[3] }}<br>{{ item[6] }}<br>{{ item[11] }}{{ item[12] }}{{ item[13] }}</td>
+                        {% break %}
+						{% elif item == items[-1] %}
+							<td>{{ ' ' }}</td>
+						{% end %}
+					{% end %}
+				{% end %}
+            </tr>
+            <tr style="height:2rem">
+				<td colspan="9" align="center">晚饭</td>
+			</tr>
+            <tr style="height:5rem">
+                <td>晚上</td>
+				<td>第五节(18:30-20:10)</td>
+				{% for j in ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'] %}
+					{% for item in items %}
+						{% if item[9] == j and item[10] == '五' %}
+                        <td>{{ item[3] }}<br>{{ item[6] }}<br>{{ item[11] }}{{ item[12] }}{{ item[13] }}</td>
+                        {% break %}
+						{% elif item == items[-1] %}
+							<td>{{ ' ' }}</td>
+						{% end %}
+					{% end %}
+				{% end %}
+			</tr>				
+		</table>
+	</div>
+	<hr>
+	<h3>详细课程信息</h3>
+	<div id="list">
+		<table class="table table-striped table-bordered table-hover">	<!--绘制详细信息列表-->
+			<thead>
+			<tr>
+				<th style="width:5rem">课程号
+				<th style="width:10rem">课程名
+                <th style="width:5rem">学分
+                <th style="width:5rem">属性
+				<th style="width:5rem">教师
+				<th style="width:5rem">周次
+                <th style="width:5rem">星期
+                <th style="width:5rem">节次
+                <th style="width:5rem">校区
+                <th style="width:5rem">教学楼
+                <th style="width:5rem">教室
+			</tr>
+			</thead>
+			{% for item in items %}
+			<tr>
+				<td>{{ item[2] }}</td>
+                <td>{{ item[3] }}</td>
+				<td>{{ item[4] }}</td>
+				<td>{{ item[5] }}</td>
+                <td>{{ item[6] }}</td>
+                <td>{{ item[8] }}</td>
+                <td>{{ item[9] }}</td>
+				<td>{{ item[10] }}</td>
+				<td>{{ item[11] }}</td>
+                <td>{{ item[12] }}</td>
+                <td>{{ item[13] }}</td>
+			</tr>
+			{% end %}			
+		</table>
+	</div>	
+{% end %}

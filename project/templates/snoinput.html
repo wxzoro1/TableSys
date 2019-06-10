@@ -1,0 +1,24 @@
+{% extends "./base.html" %}
+{% block title %} 查询学生课表 {% end %}
+{% block css %}
+{% end %}
+
+{% block js %}
+<script>
+function newlink(){
+var a=myform.name.value;
+console.log(a)
+window.location.href='http://localhost:8888/stutable/'+a;
+console.log('http://localhost:8888/stutable/'+a)
+}
+</script>
+{% end %}
+
+{% block content %} 
+<form name="myform">
+<div class="form-group input-group"> 
+        <input type="text" class="form-control"  placeholder="请输入学生号:" name="name" id="nn" />
+</div>
+<input type="button" class="btn btn-primary btn-sm" name="button" value="确定" onclick="newlink()" />    
+</form> 
+{% end %}

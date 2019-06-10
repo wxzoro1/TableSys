@@ -1,0 +1,15 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel='stylesheet' href='static/css/home.css'>
+<script type="text/javascript" charset="utf-8" src=static/js/jquery.js></script>
+</head>
+<body>
+    <ul>
+        {% for stu in stus %}
+        <li>{{stu["name"]}}------{{stu["age"]}}</li>
+        {% end %}
+    </ul>
+
+</body>
+</html>

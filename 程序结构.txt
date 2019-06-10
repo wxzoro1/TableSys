@@ -1,0 +1,10 @@
+static		css 
+		img 
+		js 
+templates	html文件
+upfile		上传文件
+views-->index.py	handlers
+application.py	路由
+conf.py      	配置文件
+server.py		主程序
+dbconn.py	数据库链接

@@ -1,0 +1,120 @@
+{% extends "./base.html" %}
+{% block title %} 我要排课 {% end %}
+
+{% block css %}
+{% end %}
+
+{% block js %}
+<script src="../static/js/sctable.js " type="text/javascript"></script>
+{% end %}
+
+{% block content %}
+
+<tr><td>学期：</td>
+<select name="term" id="select1"  >
+			<option selected>请选择 <b class="caret"></b></option>   
+			<option value="01" >2015-2016学年春</option>  
+			<option value="02" >2015-2016学年秋</option>	
+			<option value="03" >2016-2017学年春</option>
+			<option value="04" >2016-2017学年秋</option>
+			<option value="05" >2017-2018学年春</option>  
+			<option value="06" >2017-2018学年秋</option>
+			<option value="07" >2018-2019学年春</option> 
+			<option value="08" >2018-2019学年秋</option> 					   
+</select>
+</tr>
+
+
+	<button id="btn-search">确定</button>
+	<hr>
+	<button id="btn-refresh">刷新</button>
+	<button id="btn-new"> 排课</button>
+	
+	<div id="dlg-public-form" style="display:none">
+	<hr>
+	<form id="frm-public">
+		<input type="hidden" name="sn" value="">
+		<table>
+        <tr><td>课程号：</td>
+            <td><input type="integer" name="courseno" value=""></td>
+        </tr>
+		<tr><td>教职工号：</td>
+			<td><input type="integer" name="tno" value=""></td>
+		</tr>
+		<tr><td>班级：</td>
+			<td><input type="text" name="cla" value=""></td>
+		</tr>
+		<tr><td>周次：</td>
+			<td><input type="text" name="week" value=""></td>
+		</tr>
+		<tr><td>星期：</td>
+			<select name="weekday">
+				<option selected value="星期一">星期一</option>
+				<option value="星期二">星期二</option>
+				<option value="星期三">星期三</option>
+				<option value="星期四">星期四</option>
+				<option value="星期五">星期五</option>
+				<option value="星期六">星期六</option>
+				<option value="星期日">星期日</option>
+			</select>
+		</tr>
+		<tr><td>节次：</td>
+			<select name="period">
+				<option selected value="1">第一节</option>
+				<option value="2">第二节</option>
+				<option value="3">第三节</option>
+				<option value="4">第四节</option>
+				<option value="5">第五节</option>
+			</select>
+		</tr>
+		<tr><td>校区：</td>
+			<select name="campus">
+				<option selected value="西区">西区</option>
+				<option value="东区">东区</option>
+			</select>
+		</tr>
+		<tr><td>教学楼：</td>
+			<select name="building">
+				<option selected value="第一公共教学楼">第一公共教学楼</option>
+				<option value="第二公共教学楼">第二公共教学楼</option>
+			</select>
+		</tr>
+		<tr><td>教室：</td>
+			<td><input type="text" name="croom" value=""></td>
+		</tr>
+		<tr><td>
+				<input type="submit" value="修改">
+				<button id="btn-public-frm-close">关闭</button>
+			</td>
+		</tr>
+        </table>
+	</form>
+	</div>
+	
+	<hr>
+	<div id="list">
+		<table border=1>
+			<thead>
+			<tr>
+                <th style="width:2rem">序号
+                <th style="width:5rem">课程号
+                <th style="width:10rem">课名
+                <th style="width:2rem">学分
+				<th style="width:2rem">属性
+				<th style="width:5rem">教职工号
+				<th style="width:2rem">教师
+				<th style="width:5rem">班级
+				<th style="width:5rem">周次
+				<th style="width:5rem">星期
+				<th style="width:2rem">节次
+				<th style="width:3rem">校区
+				<th style="width:8rem">教学楼	
+				<th style="width:3rem">教室
+				<th style="width:7rem; text-align:left">操作</th>
+			</tr>
+			</thead>
+			<tbody id="list-tbody">
+			</tbody> 
+		</table>
+	</div>
+{% end %}

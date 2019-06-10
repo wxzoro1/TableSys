@@ -1,0 +1,22 @@
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <title></title>
+      <link rel="stylesheet" href="static/css/home.css">
+   </head>
+   <body>
+      <h1>主页</h1>
+      <h1>num:{{num + 10}}</h1>
+      <h1>{{per["name"]}}</h1>
+   {% if flag == 1 %}
+   <h1>true</h1>
+   {% end %}
+
+   <ul>
+      {%for stu in stus%}
+      <li>{{stu["name"]}}</li>
+      {%end%}
+
+   </ul>
+   </body>
+</html>
